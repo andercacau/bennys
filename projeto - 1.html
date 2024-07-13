@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Calculadora Bennys - É o Clark</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://cdn.discordapp.com/attachments/1222705395856969821/1256264766955982949/12079423_430841913777405_8960477142418032447_n.png?ex=6680233c&is=667ed1bc&hm=f56825329e113b5789e1f2e301130b84894a237abc7274e4e0be089980036bcb&'); /* Plano de fundo */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0;
+        }
+        .banner {
+            width: 100%;
+            background-color: #fc4a04;
+            color: rgb(10, 10, 10);
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5em;
+            position: fixed;
+            top: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            padding-top: 100px; /* Espaço para o banner */
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            color: rgb(250, 4, 4);
+        }
+        input {
+            padding: 10px;
+            font-size: 1em;
+            flex: 1;
+        }
+        .item-name {
+            flex: 1;
+            margin-right: 10px;
+            color: rgb(250, 4, 4);
+        }
+        .result {
+            margin-left: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 1em;
+            width: 100%;
+        }
+        .footer-text {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            color: rgb(250, 4, 4);
+            font-size: 1em;
+        }
+        .result-container {
+            margin-top: 20px;
+        }
+        .note {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            border: 2px solid #fc4a04;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        CALCULADORA BENNYS
+    </div>
+    <div class="container">
+        <div class="calculator">
+            <div class="input-group">
+                <input type="text" id="clientId" placeholder="ID do Cliente" oninput="generateNote()">
+            </div>
+            <div class="input-group">
+                <input type="text" id="clientName" placeholder="Nome do Cliente" oninput="generateNote()">
+            </div>
+            <label for="value1">Digite os nomes e valores:</label>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 1" oninput="generateNote()">
+                <input type="number" id="value1" step="any" oninput="calculate()">
+                <span class="result" id="result1"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 2" oninput="generateNote()">
+                <input type="number" id="value2" step="any" oninput="calculate()">
+                <span class="result" id="result2"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 3" oninput="generateNote()">
+                <input type="number" id="value3" step="any" oninput="calculate()">
+                <span class="result" id="result3"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 4" oninput="generateNote()">
+                <input type="number" id="value4" step="any" oninput="calculate()">
+                <span class="result" id="result4"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 5" oninput="generateNote()">
+                <input type="number" id="value5" step="any" oninput="calculate()">
+                <span class="result" id="result5"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 6" oninput="generateNote()">
+                <input type="number" id="value6" step="any" oninput="calculate()">
+                <span class="result" id="result6"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 7" oninput="generateNote()">
+                <input type="number" id="value7" step="any" oninput="calculate()">
+                <span class="result" id="result7"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 8" oninput="generateNote()">
+                <input type="number" id="value8" step="any" oninput="calculate()">
+                <span class="result" id="result8"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 9" oninput="generateNote()">
+                <input type="number" id="value9" step="any" oninput="calculate()">
+                <span class="result" id="result9"></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="item-name" placeholder="Nome do Item 10" oninput="generateNote()">
+                <input type="number" id="value10" step="any" oninput="calculate()">
+                <span class="result" id="result10"></span>
+            </div>
+            <button onclick="clearAll()">Limpar</button>
+            <div class="result-container">
+                <p id="totalResult"></p>
+                <p id="profitResult"></p>
+            </div>
+        </div>
+        <div class="note" id="note">
+            <h2>Nota do Cliente</h2>
+            <p><strong>ID do Cliente:</strong> <span id="noteClientId"></span></p>
+            <p><strong>Nome do Cliente:</strong> <span id="noteClientName"></span></p>
+            <h3>Serviços</h3>
+            <ul id="servicesList"></ul>
+            <p><strong>Total com Adicional:</strong> <span id="noteTotalResult"></span></p>
+            <button onclick="captureNote()">Copiar Nota</button>
+        </div>
+    </div>
+    <div class="footer-text">
+        Criador - É o Clark
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function calculate() {
+            let total = 0;
+            for (let i = 1; i <= 10; i++) {
+                let value = document.getElementById('value' + i).value;
+                let resultElement = document.getElementById('result' + i);
+                if (value) {
+                    let individualResult = parseFloat(value) * 1.5;
+                    resultElement.innerText = formatCurrency(individualResult);
+                    total += parseFloat(value);
+                } else {
+                    resultElement.innerText = "";
+                }
+            }
+            let totalWithAdditional = total * 1.5;
+            let profit = totalWithAdditional - total;
+            document.getElementById('totalResult').innerText = "Total: " + formatCurrency(totalWithAdditional);
+            document.getElementById('profitResult').innerText = "Lucro: " + formatCurrency(profit);
+        }
+
+        function clearAll() {
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById('value' + i).value = '';
+                document.getElementById('result' + i).innerText = '';
+            }
+            document.getElementById('totalResult').innerText = '';
+            document.getElementById('profitResult').innerText = '';
+            document.getElementById('note').style.display = 'none';
+        }
+
+        function generateNote() {
+            let clientId = document.getElementById('clientId').value;
+            let clientName = document.getElementById('clientName').value;
+            document.getElementById('noteClientId').innerText = clientId;
+            document.getElementById('noteClientName').innerText = clientName;
+
+            let servicesList = document.getElementById('servicesList');
+            servicesList.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                let itemName = document.querySelectorAll('.item-name')[i - 1].value;
+                let value = document.getElementById('value' + i).value;
+                if (itemName && value) {
+                    let listItem = document.createElement('li');
+                    listItem.innerText = `${itemName}: ${formatCurrency(parseFloat(value) * 1.5)}`;
+                    servicesList.appendChild(listItem);
+                }
+            }
+
+            let totalWithAdditional = document.getElementById('totalResult').innerText;
+            document.getElementById('noteTotalResult').innerText = totalWithAdditional.split(": ")[1];
+
+            document.getElementById('note').style.display = 'block';
+        }
+
+        function captureNote() {
+            let noteElement = document.getElementById('note');
+            let rect = noteElement.getBoundingClientRect();
+
+            html2canvas(noteElement, { 
+                windowWidth: rect.width, 
+                windowHeight: rect.height 
+            }).then(canvas => {
+                canvas.toBlob(blob => {
+                    navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+                        .then(() => {
+                            alert('Nota copiada para a área de transferência!');
+                        })
+                        .catch(err => {
+                            console.error('Erro ao copiar nota: ', err);
+                        });
+                }, 'image/png');
+            });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</body>
+</html>
